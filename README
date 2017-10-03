@@ -1,0 +1,49 @@
+# photodesc
+A quick and easy way to add description and comment to digital photos.
+
+This is the digital equivalent of writing a quick description on the back of a
+printed photo. It allows you to embed a user entered short description and/or
+longer comment in the exif data for a jpeg (and possibly other formats) file.
+You can also alter the orientation (rotate the image), if necessary. The date
+the photo was taken is also displayed (but cannot be changed), along with
+the image itself.
+
+Although many good programs exist to organise photos and add tags, decsriptions
+etc, they mostly use a database approach, without embedding the information in
+the actual picture file. This means if you decide to use a different photo
+organiser, or corrupt the database, or copy the file somewhere else it may
+be difficult or impossible to recoder the information.
+
+Some programs (eg the excellent darkroom) give you limited access to some
+exif data, I have not found one that I found satisfactory, so decided to write
+my own. It works fine for me in its current form but may benefit from some
+refinement (anyone?).
+
+Unfortunately, creating this was only the first step. Most image viewers I am
+aware of will not display the relevant exif data, or will display some of it
+amongst all the other exif data. So I also wrote a photo viewer (photoView)
+which displays an image with the date taken and descriptions as above.
+
+I hope this is of use to someone - I certainly find it useful - and I of course
+welcome constructive suggestions, contributions etc.
+
+Technical stuff.
+It's written as a qt project using qt creator. The exiv2 library is used for
+access to the exif data. It works ok on my Fedora Linux system and I would
+not expect any problems with other Linux distributions. It's probably
+portable to Windows, but since I don't use Windows myself I'm not really
+interested in doing it.
+
+The user interface allows you to enter a one line brief description. This is
+saved (when you click the save button) in the exif Image.ImageDescription field.
+I use this for a general title (eg Arran Holiday). A longer multi-line comment
+can also be entered. This gets saved in the exif Photo.UserComment field.
+
+According to the exif spec I found, the Photo.UserComment has, in its first 8
+bytes, a zero padded format name (eg ascii). But looking at files from one
+of my cameras I found this field began with charset="Ascii", and that this part
+is not displayed when using the gnome image viewer, so I adopted the same
+strategy.
+
+
+
