@@ -40,6 +40,7 @@ photoDesc::photoDesc(QWidget *parent) :
     orientation = 1;
     orientation_old = 1;
 
+    ui->textEdit_comment->setTabChangesFocus(true);
     scene = NULL;
     imageObject = NULL;
     picture = NULL;
@@ -197,14 +198,9 @@ void photoDesc::nextImage(const QModelIndex &index)
     imageObject->load(fnam);
     picture = new QPixmap(QPixmap::fromImage(*imageObject));
 
-    ui->pushButton->setEnabled(true);
-    ui->restore_button->setEnabled(true);
-    ui->comboBox_oientation->setEnabled(true);
-    ui->textEdit_comment->setEnabled(true);
-    ui->lineEdit_title->setEnabled(true);
-
     showDialogs(true);  // show the exif data and controls
     displayImage();     // show the graphics box before scaling to fit
+    ui->lineEdit_title->setFocus();
 }
 
 
@@ -380,12 +376,14 @@ void photoDesc::saveExifData()
 void photoDesc::on_clear_button_clicked()
 {
     ui->lineEdit_title->clear();
+    ui->lineEdit_title->setFocus();
 }
 
 // clear comment
 void photoDesc::on_clear_comment_button_clicked()
 {
     ui->textEdit_comment->clear();
+    ui->textEdit_comment->setFocus();
 }
 
 // restore original exif settings
