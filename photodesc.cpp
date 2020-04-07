@@ -72,7 +72,7 @@ void photoDesc::loadFileList()
    ui->fileTreeView->setColumnHidden(2,true);
    ui->fileTreeView->setColumnHidden(3,true);
    ui->fileTreeView->setHeaderHidden(true);
-   ui->fileTreeView->header()->setResizeMode(QHeaderView::ResizeToContents);
+   ui->fileTreeView->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
    ui->fileTreeView->header()->setStretchLastSection(false);
 }
 
